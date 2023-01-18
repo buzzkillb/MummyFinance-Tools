@@ -173,6 +173,9 @@ async function compound() {
    
     var contract = new web3.eth.Contract(mummyRewardRouterV2ABI, mummyRewardRouterV2);
     //Function: handleRewards(bool _shouldClaimGmx,bool _shouldStakeGmx,bool _shouldClaimEsGmx,bool _shouldStakeEsGmx,bool _shouldStakeMultiplierPoints,bool _shouldClaimWeth,bool _shouldConvertWethToEth)
+    //partial compound
+    //const compoundRewards = await contract.methods.handleRewards(0,0,1,1,1,0,0).encodeABI();
+    //Full Compound
     const compoundRewards = await contract.methods.handleRewards(1,1,1,1,1,1,1).encodeABI();
     //const claimRewards = await contract.methods.handleRewards(1,0,1,0,0,1,1).encodeABI();
     console.log(compoundRewards)
