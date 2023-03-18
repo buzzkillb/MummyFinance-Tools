@@ -19,8 +19,32 @@ https://ftmscan.com/address/0x04f23404553fcc388ec73110a0206dd2e76a6d95
 
 let stakingAddress = "<YOURADDRESS>";
 
+/*
+//feesGmxTracker, + for Multiplier Point Calcs
+const sbfMmy = "0xe149164D8eca659E8912DbDEC35E3f7E71Fb5789" //OP 0x7B26207457A9F8fF4fd21A7A0434066935f1D8E7
+//feesGlpTracker
+const fMmy = "0x7B26207457A9F8fF4fd21A7A0434066935f1D8E7" //OP 0xFfB69477FeE0DAEB64E7dE89B57846aFa990e99C
+//stakedGmxTracker, + for Multiplier Point Calcs
+const sMmy = "0x727dB8FA7861340d49d13ea78321D0C9a1a79cd5" //OP 0x04f23404553fcc388Ec73110A0206Dd2E76a6d95
+//stakedGlpTracker
+const fsMLP = "0xFfB69477FeE0DAEB64E7dE89B57846aFa990e99C" //OP 0xC2C5968e16ec9fABc39e27f9AbFC07C8Cfba6F16
+//bonusGmxTracker
+const sbMmy = "0x04f23404553fcc388Ec73110A0206Dd2E76a6d95" //OP 0xe149164D8eca659E8912DbDEC35E3f7E71Fb5789
+//gmxVester
+const vMmy = "0xa1a65D3639A1EFbFB18C82003330a4b1FB620C5a" //OP 0x2A3E489F713ab6F652aF930555b5bb3422711ac1
+//flpVester
+const vMlp = "0x2A3E489F713ab6F652aF930555b5bb3422711ac1" //OP 0xb54AbE3FEC8e1aE64620185A1E111Aa0c3a81542
+//GlpManager
+const glpManager = "0x304951d7172bCAdA54ccAC1E4674862b3d5b3d5b" //OP 0x9032aeD8C1F2139E04C1AD6D9F75bdF1D6e5CF5c
+*/
+
 const mmyUsdcLP = "0x2a6538a456650cd454dcd8f0b4665183dba0bb27"
 const ftmUsdcLP = "0x2b4c76d0dc16be1c31d4c1dc53bf9b45987fc75c"
+
+//OP
+//const mmyWethLP = "0x104D0312f95A1B3056435d19668f2272ab1e7dF2"
+//const wethUsdcLP = "0x79c912FEF520be002c2B6e57EC4324e260f38E50"
+
 //feesGmxTracker, + for Multiplier Point Calcs
 const sbfMmy = "0xe149164D8eca659E8912DbDEC35E3f7E71Fb5789"
 //feesGlpTracker
@@ -62,6 +86,31 @@ async function getSpookySwapLpUsdcFtm() {
     //console.log(Price * 1e12)
     return { totalSupplyspLP, reserves, ReservesOne, ReservesTwo, Price };
 };
+
+//OP LP's
+/*
+async function getVelodromeLpMmyWeth() {
+    var contract = new web3.eth.Contract(lpABI, mmyWethLP);
+    const totalSupplyspLP = await contract.methods.totalSupply().call();
+    const reserves = await contract.methods.getReserves().call();
+    var ReservesOne = reserves[0];
+    var ReservesTwo = reserves[1];
+    var Price = ReservesOne / ReservesTwo;
+    //console.log("MMY/WETH: " + Price)
+    return { totalSupplyspLP, reserves, ReservesOne, ReservesTwo, Price };
+};
+
+async function getVelodromeLpUsdcWeth() {
+    var contract = new web3.eth.Contract(lpABI, wethUsdcLP);
+    const totalSupplyspLP = await contract.methods.totalSupply().call();
+    const reserves = await contract.methods.getReserves().call();
+    var ReservesOne = reserves[0];
+    var ReservesTwo = reserves[1];
+    var Price = ReservesTwo / ReservesOne;
+    //console.log("WETH/USDC: " + Price * 1e12)
+    return { totalSupplyspLP, reserves, ReservesOne, ReservesTwo, Price };
+};
+*/
 
 async function getMlpPrice() {
     var contract = new web3.eth.Contract(glpManagerABI, glpManager);
